@@ -5,13 +5,13 @@ public class User {
     private int id;
     private String name;
     private int age;
-    private String city;
+    private City city;
 
     public User(){
 
     }
 
-    public User(int id, String name, int age, String city) {
+    public User(int id, String name, int age, City city) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -42,21 +42,12 @@ public class User {
         this.age = age;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
-    @Override
-    public String toString() {
-        return "ClientUser{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", city='" + city + '\'' +
-                '}';
-    }
 }

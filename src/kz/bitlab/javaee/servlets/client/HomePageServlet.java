@@ -5,9 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kz.bitlab.javaee.db.model.City;
 import kz.bitlab.javaee.db.model.User;
 import kz.bitlab.javaee.db.mysql.DBManager;
-import kz.bitlab.javaee.db.DBUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class HomePageServlet extends HttpServlet {
         ArrayList<User> users = DBManager.getAllUsers();
         request.setAttribute("polzovateli", users);
 
-        ArrayList<String> cities = DBUtil.getCities();
+        ArrayList<City> cities = DBManager.getCities();
         request.setAttribute("goroda", cities);
 
         request.getRequestDispatcher("/index.jsp").forward(request, response);

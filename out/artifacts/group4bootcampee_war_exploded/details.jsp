@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="kz.bitlab.javaee.db.model.User" %>
+<%@ page import="kz.bitlab.javaee.db.model.City" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -52,7 +53,7 @@
                 </div>
                 <div class="row mt-2">
                     <div class="col-12">
-                        <input type="text" class="form-control" readonly value="<%=clientUser.getCity()%>">
+                        <input type="text" class="form-control" readonly value="<%=clientUser.getCity().getName() + " " + clientUser.getCity().getCode()%>">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -114,11 +115,13 @@
                                     <div class="col-12">
                                         <select class="form-select" name="user_city">
                                             <%
-                                                ArrayList<String> cities = (ArrayList<String>) request.getAttribute("goroda");
+                                                ArrayList<City> cities = (ArrayList<City>) request.getAttribute("goroda");
                                                 if(cities!=null){
-                                                    for(String city : cities){
+                                                    for(City city : cities){
                                             %>
-                                                <option <%=(city.equals(clientUser.getCity())?"selected":"")%> ><%=city%></option>
+                                                <option value="<%=city.getId()%>" <%=(clientUser.getCity().getId()==city.getId()?"selected":"")%> >
+                                                    <%=city.getName() + " / " + city.getCode()%>
+                                                </option>
                                             <%
                                                     }
                                                 }

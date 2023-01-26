@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="kz.bitlab.javaee.db.model.User" %>
+<%@ page import="kz.bitlab.javaee.db.model.City" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -60,11 +61,13 @@
                                             <div class="col-12">
                                                 <select class="form-select" name="user_city">
                                                     <%
-                                                        ArrayList<String> cities = (ArrayList<String>) request.getAttribute("goroda");
+                                                        ArrayList<City> cities = (ArrayList<City>) request.getAttribute("goroda");
                                                         if(cities!=null){
-                                                            for(String city : cities){
+                                                            for(City city : cities){
                                                     %>
-                                                        <option><%=city%></option>
+                                                        <option value="<%=city.getId()%>">
+                                                            <%=city.getName() + " / " + city.getCode()%>
+                                                        </option>
                                                     <%
                                                             }
                                                         }
@@ -93,7 +96,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title"><%=user.getName()%></h5>
-                                <p class="card-text">With ID - <%=user.getId()%> from <%=user.getCity()%>
+                                <p class="card-text">With ID - <%=user.getId()%> from <%=user.getCity().getName() + " " + user.getCity().getCode()%>
                                    <%=user.getAge()%> years old</p>
                                 <a href="/details?id=<%=user.getId()%>" class="btn btn-primary btn-sm">Details</a>
                             </div>

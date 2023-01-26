@@ -5,8 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kz.bitlab.javaee.db.model.City;
 import kz.bitlab.javaee.db.model.User;
-import kz.bitlab.javaee.db.DBUtil;
 import kz.bitlab.javaee.db.mysql.DBManager;
 
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class DetailsServlet extends HttpServlet {
         User clientUser = DBManager.getUser(id);
         request.setAttribute("user", clientUser);
 
-        ArrayList<String> cities = DBUtil.getCities();
+        ArrayList<City> cities = DBManager.getCities();
         request.setAttribute("goroda", cities);
 
         request.getRequestDispatcher("/details.jsp").forward(request, response);

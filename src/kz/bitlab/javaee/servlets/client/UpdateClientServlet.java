@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kz.bitlab.javaee.db.model.City;
 import kz.bitlab.javaee.db.model.User;
 import kz.bitlab.javaee.db.mysql.DBManager;
 
@@ -27,7 +28,9 @@ public class UpdateClientServlet extends HttpServlet {
 
             String name = request.getParameter("user_name");
             int age = Integer.parseInt(request.getParameter("user_age"));
-            String city = request.getParameter("user_city");
+            int cityId = Integer.parseInt(request.getParameter("user_city"));
+
+            City city = DBManager.getCity(cityId);
 
             User user = DBManager.getUser(id);
 
